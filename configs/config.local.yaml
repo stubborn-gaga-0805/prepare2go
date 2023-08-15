@@ -1,0 +1,96 @@
+env:
+  appId: prepare-to-go
+  appVersion: v1.0
+  appName: prepare-to-go
+  appEnv: local
+server:
+  http:
+    addr: 0.0.0.0
+    port: 8800
+    timeout: 2s
+  grpc:
+    addr: 0.0.0.0
+    port: 9900
+    timeout: 2s
+  ws:
+    addr: 0.0.0.0
+    port: 7700
+    pingTimeout: 60s
+    PingInterval: 20s
+data:
+  db:
+    driver: mysql
+    addr: 127.0.0.1:3306
+    database: my_db
+    username: username
+    password: password
+    options: charset=utf8mb4&parseTime=True&loc=Local
+    maxDialTimeout: 2s
+    maxIdleConn: 20
+    maxOpenConn: 40
+    connMaxIdleTime: 120s
+    connMaxLifeTime: 120s
+    logInfo: true
+    resolvers:
+      - type: replica
+        addr: 127.0.0.1:3306
+        database: my_db
+        username: username
+        password: password
+        options: charset=utf8mb4&parseTime=True&loc=Local
+        maxDialTimeout: 2s
+  redis:
+    addr: 127.0.0.1:6379
+    password: password
+    db: 0
+    dialTimeout: 2s
+    readTimeout: 5s
+    writeTimeout: 5s
+mq:
+  rabbitMQ:
+    host: 127.0.0.1
+    port: 5672
+    user: username
+    password: password
+    vhost: chrison
+    maxDialTimeout: 2s
+  redisMQ:
+    addr: 127.0.0.1:6379
+    password: password
+    db: 10
+    dialTimeout: 2s
+    readTimeout: 5s
+    writeTimeout: 5s
+    maxRetries: 5
+    poolSize: 20
+    poolTimeout: 30s
+logger:
+  zap:
+    mode: local
+    filePath: logs
+    fileName: server.log
+    maxSize: 10
+    maxAge: 7
+    maxBackups: 15
+oss:
+  aliYun:
+    accessId: _accessId
+    accessSecret: _accessSecret
+    defaultBucket: _defaultBucket
+    endPoint: _endPoint
+    customDomain: _customDomain
+jwt:
+  secretKey: _secretKey
+  effectAfter: 0s
+  maxAge: 72h
+wechat:
+  miniApp:
+    appId: _appId
+    appSecret: _appSecret
+    aesKey: _aesKey
+    token:
+    httpDebug: true
+    cacheRedis:
+      addr: 127.0.0.1:6379
+      password: _password
+      db: 8
